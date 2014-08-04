@@ -27,8 +27,6 @@
     if (self) {
         self.url = url;
         self.title = @"Offers";
-        self.tabBarItem.image = [UIImage imageNamed:@"Wallet"];
-        self.tabBarItem.selectedImage = [UIImage imageNamed:@"WalletSelected"];
     }
     return self;
 }
