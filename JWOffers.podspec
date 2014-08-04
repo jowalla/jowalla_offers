@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "Copyright 2014 Jowalla"
+  s.license      = { :type => "None", :text => "Copyright 2014 Jowalla"}
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
