@@ -17,18 +17,11 @@ Pod::Spec.new do |s|
 
   s.name         = "JWOffers"
   s.version      = "0.0.1"
-  s.summary      = "A short description of JWOffers."
+  s.summary      = "JWOffers is a convenient controller to display Jowalla offers in your app."
 
-  s.description  = <<-DESC
-                   A longer description of JWOffers in Markdown format.
+  s.description  = "JWOffers is an easy to use view controller to display your special offers from your Jowalla account in your app."
 
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
-                   DESC
-
-  s.homepage     = "http://EXAMPLE/JWOffers"
+  s.homepage     = "http://www.jowalla.com"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -39,7 +32,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT (example)"
+  s.license      = "Copyright 2014 Jowalla"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -53,7 +46,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
   
-  s.author             = { "Juan Alvarez" => "jlalvarez18@gmail.com" }
+  s.author             = "Juan Alvarez"
   # Or just: s.author    = "Juan Alvarez"
   # s.authors            = { "Juan Alvarez" => "jlalvarez18@gmail.com" }
   # s.social_media_url   = "http://twitter.com/Juan Alvarez"
@@ -65,7 +58,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  s.platform     = :ios, "7.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -78,7 +71,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://EXAMPLE/JWOffers.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/jowalla/jowalla_offers.git", :tag => "0.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -89,8 +82,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+  s.source_files  = "JWOffers/JWOffersViewController.{h,m}"
+  # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
@@ -128,7 +121,7 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # s.requires_arc = true
+  s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
