@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>97769489-5CFF-4038-8A0B-20614179DF59</string>
+	<key>IDESourceControlProjectName</key>
+	<string>JWOffers</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7D3713D9-6089-4144-AF58-4C5F5FEBF66E</key>
+		<string>ssh://github.com/jowalla/jowalla_offers.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>JWOffers.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7D3713D9-6089-4144-AF58-4C5F5FEBF66E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/jowalla/jowalla_offers.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7D3713D9-6089-4144-AF58-4C5F5FEBF66E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7D3713D9-6089-4144-AF58-4C5F5FEBF66E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>jowalla_pod</string>
+		</dict>
+	</array>
+</dict>
+</plist>
