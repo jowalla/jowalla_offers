@@ -10,31 +10,43 @@
 	<string>JWOffers</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>7D3713D9-6089-4144-AF58-4C5F5FEBF66E</key>
-		<string>ssh://github.com/jowalla/jowalla_offers.git</string>
+		<key>1B7CD8AECC03EC207FB5D8FEEEF489354C3E2A05</key>
+		<string>https://github.com/EugeneNguyen/jowalla_offers.git</string>
+		<key>ecd3735a-6ce3-4582-ab76-7bfeddbf47fa</key>
+		<string>svn://libre.com.vn/librenetwork</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>JWOffers.xcodeproj/project.xcworkspace</string>
+	<string>ios/JWOffers.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>7D3713D9-6089-4144-AF58-4C5F5FEBF66E</key>
-		<string>../..</string>
+		<key>1B7CD8AECC03EC207FB5D8FEEEF489354C3E2A05</key>
+		<string>../../..</string>
+		<key>ecd3735a-6ce3-4582-ab76-7bfeddbf47fa</key>
+		<string>../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/jowalla/jowalla_offers.git</string>
+	<string>https://github.com/EugeneNguyen/jowalla_offers.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>7D3713D9-6089-4144-AF58-4C5F5FEBF66E</string>
+	<string>1B7CD8AECC03EC207FB5D8FEEEF489354C3E2A05</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>ecd3735a-6ce3-4582-ab76-7bfeddbf47fa</string>
+			<key>IDESourceControlWCCName</key>
+			<string>..</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>7D3713D9-6089-4144-AF58-4C5F5FEBF66E</string>
+			<string>1B7CD8AECC03EC207FB5D8FEEEF489354C3E2A05</string>
 			<key>IDESourceControlWCCName</key>
-			<string>jowalla_pod</string>
+			<string>jowalla_offers</string>
 		</dict>
 	</array>
 </dict>
