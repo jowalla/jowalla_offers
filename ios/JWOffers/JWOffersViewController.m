@@ -7,13 +7,15 @@
 //
 
 #import "JWOffersViewController.h"
+#import <WebKit/WebKit.h>
 
 @import PassKit;
 @import MessageUI;
 
-@interface JWOffersViewController () <UIWebViewDelegate, PKAddPassesViewControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface JWOffersViewController () <UIWebViewDelegate, WKNavigationDelegate, PKAddPassesViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) WKWebView *webkitView;
 
 @property (nonatomic, strong) NSURL *url;
 
@@ -34,7 +36,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self.view addSubview:self.webView];
 }
@@ -103,12 +104,11 @@
     [controller dismissViewControllerAnimated:YES completion:NULL];
 }
 
-#pragma mark -
-#pragma mark UIWebViewDelegate Methods
+#pragma mark - Private Method
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (BOOL)canOpenURL:(NSURL *)url
 {
-    NSURL *url = request.URL;
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     NSString *ext = url.pathExtension;
     
@@ -134,58 +134,58 @@
         mailViewController.mailComposeDelegate = self;
         
         NSArray *rawURLparts = [[url resourceSpecifier] componentsSeparatedByString:@"?"];
-		if (rawURLparts.count > 2) {
-			return NO; // invalid URL
-		}
-		
-		NSMutableArray *toRecipients = [NSMutableArray array];
-		NSString *defaultRecipient = [rawURLparts objectAtIndex:0];
-		if (defaultRecipient.length) {
-			[toRecipients addObject:defaultRecipient];
-		}
-		
-		if (rawURLparts.count == 2) {
-			NSString *queryString = [rawURLparts objectAtIndex:1];
-			
-			NSArray *params = [queryString componentsSeparatedByString:@"&"];
-			for (NSString *param in params) {
-				NSArray *keyValue = [param componentsSeparatedByString:@"="];
-				if (keyValue.count != 2) {
-					continue;
-				}
-				NSString *key = [[keyValue objectAtIndex:0] lowercaseString];
-				NSString *value = [keyValue objectAtIndex:1];
-				
-				value =  (NSString *)CFBridgingRelease(CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,
+        if (rawURLparts.count > 2) {
+            return NO; // invalid URL
+        }
+        
+        NSMutableArray *toRecipients = [NSMutableArray array];
+        NSString *defaultRecipient = [rawURLparts objectAtIndex:0];
+        if (defaultRecipient.length) {
+            [toRecipients addObject:defaultRecipient];
+        }
+        
+        if (rawURLparts.count == 2) {
+            NSString *queryString = [rawURLparts objectAtIndex:1];
+            
+            NSArray *params = [queryString componentsSeparatedByString:@"&"];
+            for (NSString *param in params) {
+                NSArray *keyValue = [param componentsSeparatedByString:@"="];
+                if (keyValue.count != 2) {
+                    continue;
+                }
+                NSString *key = [[keyValue objectAtIndex:0] lowercaseString];
+                NSString *value = [keyValue objectAtIndex:1];
+                
+                value =  (NSString *)CFBridgingRelease(CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,
                                                                                                                (CFStringRef)value,
                                                                                                                CFSTR(""),
                                                                                                                kCFStringEncodingUTF8));
-				
-				if ([key isEqualToString:@"subject"]) {
-					[mailViewController setSubject:value];
-				}
-				
-				if ([key isEqualToString:@"body"]) {
-					[mailViewController setMessageBody:value isHTML:NO];
-				}
-				
-				if ([key isEqualToString:@"to"]) {
-					[toRecipients addObjectsFromArray:[value componentsSeparatedByString:@","]];
-				}
-				
-				if ([key isEqualToString:@"cc"]) {
-					NSArray *recipients = [value componentsSeparatedByString:@","];
-					[mailViewController setCcRecipients:recipients];
-				}
-				
-				if ([key isEqualToString:@"bcc"]) {
-					NSArray *recipients = [value componentsSeparatedByString:@","];
-					[mailViewController setBccRecipients:recipients];
-				}
-			}
-		}
-		
-		[mailViewController setToRecipients:toRecipients];
+                
+                if ([key isEqualToString:@"subject"]) {
+                    [mailViewController setSubject:value];
+                }
+                
+                if ([key isEqualToString:@"body"]) {
+                    [mailViewController setMessageBody:value isHTML:NO];
+                }
+                
+                if ([key isEqualToString:@"to"]) {
+                    [toRecipients addObjectsFromArray:[value componentsSeparatedByString:@","]];
+                }
+                
+                if ([key isEqualToString:@"cc"]) {
+                    NSArray *recipients = [value componentsSeparatedByString:@","];
+                    [mailViewController setCcRecipients:recipients];
+                }
+                
+                if ([key isEqualToString:@"bcc"]) {
+                    NSArray *recipients = [value componentsSeparatedByString:@","];
+                    [mailViewController setBccRecipients:recipients];
+                }
+            }
+        }
+        
+        [mailViewController setToRecipients:toRecipients];
         
         [self presentViewController:mailViewController animated:YES completion:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -195,6 +195,14 @@
     }
     
     return YES;
+}
+
+#pragma mark -
+#pragma mark UIWebViewDelegate Methods
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    return [self canOpenURL:request.URL];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -212,20 +220,52 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
+{
+    if (![self canOpenURL:webView.URL])
+    {
+        [webView stopLoading];
+    }
+}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+    decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+    NSLog(@"DONE");
+}
+
 #pragma mark -
 #pragma mark Views
 
-- (UIWebView *)webView
+- (id)webView
 {
-    if (_webView) {
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)
+    {
+        if (_webView)
+        {
+            return _webView;
+        }
+        _webView = [[UIWebView alloc] init];
+        _webView.delegate = self;
+        _webView.scalesPageToFit = YES;
         return _webView;
     }
+    else
+    {
+        if (_webkitView)
+        {
+            return _webkitView;
+        }
+        _webkitView = [[WKWebView alloc] init];
+        _webkitView.navigationDelegate = self;
+        return _webkitView;
+    }
     
-    _webView = [[UIWebView alloc] init];
-    _webView.delegate = self;
-    _webView.scalesPageToFit = YES;
-    
-    return _webView;
 }
 
 @end

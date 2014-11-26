@@ -20,6 +20,7 @@
 		0D4075A1198FF5F000FD24B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D40759F198FF5F000FD24B5 /* InfoPlist.strings */; };
 		0D4075A3198FF5F000FD24B5 /* JWOffersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4075A2198FF5F000FD24B5 /* JWOffersTests.m */; };
 		0D4075AE198FF5F800FD24B5 /* JWOffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4075AD198FF5F800FD24B5 /* JWOffersViewController.m */; };
+		B678207A1A262E4B006C5AB7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B67820791A262E4B006C5AB7 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		0D4075A2198FF5F000FD24B5 /* JWOffersTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWOffersTests.m; sourceTree = "<group>"; };
 		0D4075AC198FF5F800FD24B5 /* JWOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWOffersViewController.h; sourceTree = "<group>"; };
 		0D4075AD198FF5F800FD24B5 /* JWOffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWOffersViewController.m; sourceTree = "<group>"; };
+		B67820791A262E4B006C5AB7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B678207A1A262E4B006C5AB7 /* WebKit.framework in Frameworks */,
 				0D407580198FF5F000FD24B5 /* CoreGraphics.framework in Frameworks */,
 				0D407582198FF5F000FD24B5 /* UIKit.framework in Frameworks */,
 				0D40757E198FF5F000FD24B5 /* Foundation.framework in Frameworks */,
@@ -99,6 +102,7 @@
 		0D40757C198FF5F000FD24B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B67820791A262E4B006C5AB7 /* WebKit.framework */,
 				0D40757D198FF5F000FD24B5 /* Foundation.framework */,
 				0D40757F198FF5F000FD24B5 /* CoreGraphics.framework */,
 				0D407581198FF5F000FD24B5 /* UIKit.framework */,
@@ -443,6 +447,7 @@
 				0D4075A8198FF5F000FD24B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0D4075A9198FF5F000FD24B5 /* Build configuration list for PBXNativeTarget "JWOffersTests" */ = {
 			isa = XCConfigurationList;
@@ -451,6 +456,7 @@
 				0D4075AB198FF5F000FD24B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
